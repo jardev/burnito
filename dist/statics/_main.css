@@ -1,0 +1,122 @@
+
+
+    html {
+        -webkit-font-smoothing: antialiased;
+        font-family: "Raleway", Helvetica, Arial, sans-serif;
+        color: #362e46;
+        font-size: 15px;
+        line-height: 1.4;
+        font-weight: 600;
+        margin: 40px;
+    }
+
+    button, input, optgroup, select, textarea {
+        line-height: inherit;
+        font-family: inherit;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    ::-moz-selection {
+        background: #ffa4a4;
+        text-shadow: none;
+    }
+
+    ::selection {
+        background: #ffa4a4;
+        text-shadow: none;
+    }
+
+    i {
+        font-style: normal;
+    }
+
+    button, input {
+        border-radius: 4px;
+    }
+
+    a {
+        color: #191d29;
+        text-decoration: none;
+        transition: all 0.08s ease-in-out;
+    }
+
+    a:hover {
+        color: #000;
+        text-decoration: underline;
+        transition: all 0.08s ease-in-out;
+    }
+
+    hr {
+        border: 0;
+        border-bottom: 1px solid #cecece;
+    }
+
+    input[type='submit'] {
+        font-weight: 800;
+        padding: 7px 25px 4px;
+        border: 0;
+        background: #61bd4f;
+        background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
+        box-shadow: 0 2px 0 #3f6f21;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    h1 {
+        font-size: 30px;
+        font-weight: 900;
+    }
+
+    input[type='submit']:hover {
+        opacity: 0.90;
+    }
+
+    input[type='submit']:disabled {
+        opacity: 1;
+        color: #8c8c8c;
+        box-shadow: none;
+        background: #e2e4e6;
+    }
+
+    input[type='password'],
+    input[type='email'],
+    input[type='date'],
+    select,
+    input[type='text'] {
+        padding: 6px 17px;
+        -webkit-appearance: none;
+        background: #edeff0;
+        border: 1px solid #cdd2d4;
+        font-weight: 800;
+        font-size: 16px;
+        color: #0a0505;
+        width: 500px;
+    }
+
+    input[type='date']{
+        width: 250px;
+        margin-right: 10px;
+    }
+
+    #mainleft {
+        width: 49%;
+        float: left;
+        background: #e0e0e0;
+        padding: 34px;
+        margin-right: 1%;
+    }
+
+    #mainright {
+        width: 49%;
+        float: left;
+        background: #e0e0e0;
+        padding: 34px;
+        margin-left: 1%;
+    }
+
+    canvas {
+        display: block;
+    }
