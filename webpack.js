@@ -15,6 +15,9 @@ module.exports = {
     contentBase: './build',
     hot: true
   },
+  resolve: {
+    alias: {'chart.js': require.resolve('chartjs') }
+  },
   module: {
     rules: [
       {

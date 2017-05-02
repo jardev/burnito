@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Router, Route, hashHistory, IndexRoute } from 'react-router'
 import utils from './application-utils'
+import Cookies from 'js-cookies'
 
 import './build/styles/index.css'
 import './build/styles/footer.css'
@@ -9,14 +10,33 @@ import './build/styles/header.css'
 import './build/styles/main.css'
 import './build/styles/connect.css'
 
+// 0/808f4f5602feb0f03e0ef861b3d8b326
+
 class Connect extends Component {
   constructor() {
     super(...arguments)
+    this.state = { workspaces: [], loading: false, selected: [], projects: [] }
 
-    utils.nah()
+    this.loadApp = this.loadApp.bind(this)
+    console.info('token in cookies', Cookies.getItem('scrum_token'))
+  }
+
+  loadApp() {
+    const that = this
+    this.setState({ loading: true })
+
+    utils.asanaRequest('workspaces?opt_fields=id,name,is_organization&limit=100', function(res) {
+      console.info('got workspaces with', res.data)
+      that.setState({ workspaces: res.data, loading: false })
+    })
   }
 
   render() {
+    if (!this.state || this.state.loading) {
+      return <aside className='connect'><br /><br />loading ...</aside>
+    }
+    const { workspaces, projects, selected } = this.state
+
     return (
       <div>
         <div className='return'>
@@ -29,62 +49,102 @@ class Connect extends Component {
           <div>
             <h2>1. Connect your Asana account</h2>
             <p>Create a token in Asana and paste it here. You can get this token in Asana by going to My Profile Settings > Apps > Manage > Personal Access Tokens.</p>
-
-            <input className='token' type='text' placeholder='0/3de7b0cbdc27b5a2841f23d1cf8a45c9' />
-            &nbsp;&nbsp;
-            <input className='token-submit' type='submit' value='Save token' />
-            <br /><br />
+            <input type='text' placeholder='0/3de7b0cbdc27b5a2841f23d1cf8a45c9' defaultValue={Cookies.getItem('scrum_token') || ''} onChange={(e) => { Cookies.setItem('scrum_token', e.target.value) }} />&nbsp;&nbsp;
+            <input type='submit' value='Load' onClick={this.loadApp} /><br /><br />
           </div>
 
-          <div className='disabled'>
-            <h2>2. Select a workspace </h2>
-            <p>Choose the workspace your want to display projects from.</p>
+          <Workspaces workspaces={workspaces} callback={(projects) => { this.setState({ projects }) }} />
+          <Projects projects={projects} callback={(selected) => { console.info(selected.selected); Cookies.setItem('scrum_selectedproject', selected.selected); this.setState({ selected }) }} />
+          <Dates project={this.state} disabled={selected.length < 1} callback={(w, date) => { this.setState({ [w]: date })  }} />
 
-            <select>&nbsp;</select>
-            <br /><br />
+          <div className={(!!this.state.from && !!this.state.to) ? '' : 'disabled'}>
+            <a className='save button'  href='/#/graph'>Save and load graph</a>
           </div>
-
-          <div className='disabled'>
-            <h2>3. Select a project</h2>
-            <p>Select the project you want to display the chart for (only active projects).</p>
-
-            <select>&nbsp;</select>
-            <br /><br />
-          </div>
-
-          <div className='disabled'>
-            <h2>4. Enter Start and End date of the sprint </h2>
-            <p>(In safari plese enter in format 2017-03-01.</p>
-
-            <input type='date' className='startdate' />
-            <input type='date' className='enddate' />
-            <br /><br /><br />
-          </div>
-
-          <input className='save' type='submit' value='Save and load graph' /><br />
-          <a href='/#/graph'>Graph</a>
         </aside>
       </div>
     )
   }
 }
 
-class Footer extends Component {
+class Workspaces extends Component {
+  constructor() {
+    super(...arguments)
+    this.loadWorkspace = this.loadWorkspace.bind(this)
+  }
+
+  loadWorkspace(workspace) {
+    const that = this
+    console.info('fetching projects for', workspace)
+
+    utils.asanaRequest('projects?opt_fields=workspace,name,id&limit=100&workspace=' + workspace + '&archived=false', function(res) {
+      console.info('got projects of workspace', res.data)
+      that.props.callback(res.data)
+    })
+  }
+
+  render() {
+    const { workspaces } = this.props
+
+    return (
+      <div className={`workspaces ${workspaces.length<1 ? 'disabled' : ''}`}>
+        <h2>2. Select a workspace </h2>
+        <p>Choose the workspace your want to display projects from.</p>
+        <select onChange={(e) => { this.loadWorkspace(e.target.value) }}>
+          <option readOnly={true}>-</option>
+          {workspaces.map(x => (<option key={x.id} value={x.id}>{x.name}</option>))}
+        </select><br /><br />
+      </div>
+    )
+  }
+}
+
+class Projects extends Component {
+  render() {
+    const { projects } = this.props
+
+    return (
+      <div className={`${projects.length<1 ? 'disabled' : ''}`}>
+        <h2>3. Select a project</h2>
+        <p>Select the project you want to display the chart for (only active projects).</p>
+        <select onChange={(e) => { this.props.callback({ selected: e.target.value }) }}>
+          <option readOnly={true}>-</option>
+          {projects.map(x => (<option key={x.id} value={x.id}>{x.name}</option>))}
+        </select><br /><br />
+      </div>
+    )
+  }
+}
+
+class Dates extends Component {
   render() {
     return (
-      <footer className='footer'><div className='wrapper'>
-        &copy; Burnito 2017
-        <a target='_blank' href='https://github.com/ondrek/burnito'>Github</a>
-      </div></footer>
+      <div className={this.props.disabled ? 'disabled' : ''}>
+        <h2>4. Enter Start and End date of the sprint </h2>
+        <p>(In safari plese enter in format 2017-03-01.</p>
+        <input type='date' defaultValue={Cookies.getItem('scrum_from')} onChange={(e) => {
+          console.info('cookie saved from date', e.target.value)
+          Cookies.setItem('scrum_from', e.target.value)
+          this.props.callback('from', e.target.value )}
+        } />
+        <input type='date' defaultValue={Cookies.getItem('scrum_to')} onChange={(e) => {
+          console.info('cookie saved to date', e.target.value)
+          Cookies.setItem('scrum_to', e.target.value)
+          this.props.callback('to', e.target.value )}
+        } /><br /><br /><br />
+      </div>
     )
   }
 }
 
 class Graph extends Component {
   render() {
+    console.info(Cookies.getItem('scrum_selectedproject'))
     return (
       <header className='graph'><div className='wrapper'>
-        graph
+        here i need to add a graph of id<br />
+        {Cookies.getItem('scrum_selectedproject')}<br />
+        {Cookies.getItem('scrum_from')}<br />
+        {Cookies.getItem('scrum_to')}<br />
       </div></header>
     )
   }
@@ -101,17 +161,6 @@ class Header extends Component {
 }
 
 class Main extends Component {
-  constructor() {
-    super(...arguments)
-    this.state = { domains: [], texts: {}, refs: [] }
-
-    const url = '//raw.githubusercontent.com/ondrek/aliename/master/.admin.json?' + (+new Date())
-    $.getJSON(url, function (adminJson) {
-      this.setState({ domains: adminJson.domains, texts: adminJson.texts, refs: adminJson.refs
-      })
-    }.bind(this))
-  }
-
   render() {
     return (
       <div className='main'>
@@ -123,7 +172,7 @@ class Main extends Component {
 }
 
 const envelope = ({ children }) => (
-  <main><Header />{children}<Footer /></main>
+  <main><Header />{children}</main>
 )
 
 ReactDOM.render(

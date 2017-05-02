@@ -34,13 +34,7 @@
   margin: 0 0 13px;
 }
 
-/*.connect .disabled * {*/
-  /*color: #ddd;*/
-  /*cursor: default;*/
-/*}*/
-
-
-.connect .token {
+.connect input[type='text'] {
   width: 400px;
 }
 
