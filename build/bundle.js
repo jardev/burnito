@@ -16207,6 +16207,8 @@ __webpack_require__(547);
 
 __webpack_require__(549);
 
+__webpack_require__(552);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -16228,22 +16230,106 @@ var Connect = function (_Component) {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'aside',
-        { id: 'contact' },
+        'div',
+        null,
         _react2.default.createElement(
-          'h2',
-          { className: 'title email' },
+          'div',
+          { className: 'return' },
           _react2.default.createElement(
             'a',
-            { href: 'mailto:hi@aliename.com?subject=Hello' },
-            'HI@',
-            _react2.default.createElement(
-              'i',
-              null,
-              'ALIENAME'
-            ),
-            '.COM'
+            { href: '/' },
+            '\xAB Return'
           )
+        ),
+        _react2.default.createElement(
+          'aside',
+          { className: 'connect' },
+          _react2.default.createElement(
+            'h1',
+            null,
+            'Setup'
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'h2',
+              null,
+              '1. Connect your Asana account'
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Create a token in Asana and paste it here. You can get this token in Asana by going to My Profile Settings > Apps > Manage > Personal Access Tokens.'
+            ),
+            _react2.default.createElement('input', { className: 'token', type: 'text', placeholder: '0/3de7b0cbdc27b5a2841f23d1cf8a45c9' }),
+            '\xA0\xA0',
+            _react2.default.createElement('input', { className: 'token-submit', type: 'submit', value: 'Save token' }),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('br', null)
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'disabled' },
+            _react2.default.createElement(
+              'h2',
+              null,
+              '2. Select a workspace '
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Choose the workspace your want to display projects from.'
+            ),
+            _react2.default.createElement(
+              'select',
+              null,
+              '\xA0'
+            ),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('br', null)
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'disabled' },
+            _react2.default.createElement(
+              'h2',
+              null,
+              '3. Select a project'
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'Select the project you want to display the chart for (only active projects).'
+            ),
+            _react2.default.createElement(
+              'select',
+              null,
+              '\xA0'
+            ),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('br', null)
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'disabled' },
+            _react2.default.createElement(
+              'h2',
+              null,
+              '4. Enter Start and End date of the sprint '
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              '(In safari plese enter in format 2017-03-01.'
+            ),
+            _react2.default.createElement('input', { type: 'date', className: 'startdate' }),
+            _react2.default.createElement('input', { type: 'date', className: 'enddate' }),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement('br', null)
+          ),
+          _react2.default.createElement('input', { className: 'save', type: 'submit', value: 'Save and load graph' })
         )
       );
     }
@@ -16377,9 +16463,9 @@ _reactDom2.default.render(_react2.default.createElement(
   _react2.default.createElement(
     _reactRouter.Route,
     { path: '/', component: envelope },
-    _react2.default.createElement(_reactRouter.IndexRoute, { component: Main }),
-    _react2.default.createElement(_reactRouter.Route, { path: '/connect', component: Connect })
-  )
+    _react2.default.createElement(_reactRouter.IndexRoute, { component: Main })
+  ),
+  _react2.default.createElement(_reactRouter.Route, { path: '/connect', component: Connect })
 ), document.getElementById('root'));
 
 /***/ }),
@@ -21254,7 +21340,7 @@ exports = module.exports = __webpack_require__(95)(undefined);
 
 
 // module
-exports.push([module.i, ".footer {\n  font-size: 14px;\n  border-top: 1px solid #ccc;\n  padding: 11px 0 10px;\n  color: #ccc;\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n}\n\n.footer a {\n  float: right;\n  color: inherit;\n}\n", ""]);
+exports.push([module.i, ".footer {\n  font-size: 14px;\n  border-top: 1px solid #ccc;\n  padding: 11px 0 10px;\n  color: #ccc;\n}\n\n.footer a {\n  float: right;\n  color: inherit;\n}\n", ""]);
 
 // exports
 
@@ -21268,7 +21354,7 @@ exports = module.exports = __webpack_require__(95)(undefined);
 
 
 // module
-exports.push([module.i, ".header h1 {\n  font-weight: 800;\n  font-size: 21px;\n}\n", ""]);
+exports.push([module.i, ".header h1 {\n  font-weight: 800;\n  font-size: 21px;\n  text-decoration: none;\n}\n\n  .header a:hover {\n    text-decoration: none;\n    opacity: 0.6;\n  }\n\n", ""]);
 
 // exports
 
@@ -21282,7 +21368,7 @@ exports = module.exports = __webpack_require__(95)(undefined);
 
 
 // module
-exports.push([module.i, "  html {\n    font-family: 'Lato', 'Arial', 'Helvetica', sans-serif;\n    margin-bottom: 20px;\n    color: #191d29;\n    font-size: 15px;\n    line-height: 1.8;\n    font-weight: 400;\n    -webkit-font-smoothing: antialiased;\n  }\n\n  button, input, optgroup, select, textarea {\n    line-height: inherit;\n    font-family: inherit;\n  }\n\n  * {\n    box-sizing: border-box;\n  }\n\n  ::-moz-selection {\n    background: #ffa4a4;\n    text-shadow: none;\n  }\n\n  ::selection {\n    background: #ffa4a4;\n    text-shadow: none;\n  }\n\n  i {\n    font-style: normal;\n  }\n\n  button, input {\n    border-radius: 4px;\n  }\n\n  a {\n    color: #191d29;\n    text-decoration: none;\n    transition: all 0.08s ease-in-out;\n  }\n\n  a:hover {\n    color: #000;\n    text-decoration: underline;\n    transition: all 0.08s ease-in-out;\n  }\n\n  hr {\n    border: 0;\n    border-bottom: 1px solid #cecece;\n  }\n\n  input[type='submit'] {\n    font-weight: 800;\n    padding: 20px 25px;\n    border: 0;\n    margin: 67px 0 0;\n    background: #61bd4f;\n    background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);\n    box-shadow: 0 2px 0 #3f6f21;\n    color: #fff;\n    cursor: pointer;\n  }\n\n  h1 {\n    font-size: 30px;\n    font-weight: 900;\n  }\n\n  input[type='submit']:hover {\n    opacity: 0.90;\n  }\n\n  input[type='submit']:disabled {\n    opacity: 1;\n    color: #8c8c8c;\n    box-shadow: none;\n    background: #e2e4e6;\n  }\n\n  input[type='password'],\n  input[type='email'],\n  input[type='text'] {\n    padding: 16px 17px;\n    background: #edeff0;\n    border: 1px solid #cdd2d4;\n    font-weight: 800;\n    font-size: 16px;\n    color: #0a0505;\n  }\n\n  .wrapper {\n    max-width: 1000px;\n    padding: 0 50px;\n    margin: 0 auto;\n  }\n", ""]);
+exports.push([module.i, "  html {\n    font-family: 'Lato', 'Arial', 'Helvetica', sans-serif;\n    margin-bottom: 20px;\n    color: #191d29;\n    overflow-x: hidden;\n    font-size: 15px;\n    line-height: 1.8;\n    font-weight: 400;\n    -webkit-font-smoothing: antialiased;\n  }\n\n  button, input, optgroup, select, textarea {\n    line-height: inherit;\n    font-family: inherit;\n  }\n\n  * {\n    box-sizing: border-box;\n  }\n\n  ::-moz-selection {\n    background: #ffa4a4;\n    text-shadow: none;\n  }\n\n  ::selection {\n    background: #ffa4a4;\n    text-shadow: none;\n  }\n\n  i {\n    font-style: normal;\n  }\n\n  button, input {\n    border-radius: 4px;\n  }\n\n  a {\n    color: #191d29;\n    text-decoration: none;\n    transition: all 0.08s ease-in-out;\n  }\n\n  a:hover {\n    color: #000;\n    text-decoration: underline;\n    transition: all 0.08s ease-in-out;\n  }\n\n  hr {\n    border: 0;\n    border-bottom: 1px solid #cecece;\n  }\n\n  input[type='submit'] {\n    font-weight: 600;\n    padding: 3px 12px 4px;\n    border: 0;\n    background: #61bd4f;\n    background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);\n    box-shadow: 0 2px 0 #3f6f21;\n    color: #fff;\n    cursor: pointer;\n    font-size: 14px;\n    position: relative;\n    top: -2px;\n  }\n\n  h1 {\n    font-size: 25px;\n    font-weight: 900;\n  }\n\n  h2 {\n    font-size: 19px;\n    margin: 0;\n  }\n\n  input[type='submit']:hover {\n    opacity: 0.90;\n  }\n\n  input[type='submit']:disabled {\n    opacity: 1;\n    color: #8c8c8c;\n    box-shadow: none;\n    background: #e2e4e6;\n  }\n\n  input[type='password'],\n  input[type='email'],\n  input[type='date'],\n  input[type='text'],\n  select {\n    padding: 4px 9px;\n    background: #edeff0;\n    border: 1px solid #cdd2d4;\n    font-weight: 500;\n    font-size: 14px;\n    color: #0a0505;\n  }\n\n  .wrapper {\n    max-width: 1000px;\n    padding: 0 50px;\n    margin: 0 auto;\n  }\n", ""]);
 
 // exports
 
@@ -21296,7 +21382,7 @@ exports = module.exports = __webpack_require__(95)(undefined);
 
 
 // module
-exports.push([module.i, ".main {\n  text-align: center;\n  position: absolute;\n  top: 50%;\n  width: 100%;\n  margin-top: -50px;\n}\n\n.main .button {\n  border: 1px solid #656565;\n  display: inline-block;\n  padding: 5px 15px;\n  border-radius: 4px;\n  color: #656565;\n}\n\n  .main .button:hover {\n    text-decoration: none;\n    color: white;\n    background: #656565;\n  }\n\n.main h2 {\n  font-size: 25px;\n  margin: 0 0 10px;\n  font-weight: 400;\n}\n", ""]);
+exports.push([module.i, ".main {\n  text-align: center;\n  margin: 300px 0 400px;\n}\n\n.main .button {\n  border: 1px solid #656565;\n  display: inline-block;\n  padding: 5px 15px;\n  border-radius: 4px;\n  color: #656565;\n}\n\n  .main .button:hover {\n    text-decoration: none;\n    color: white;\n    background: #656565;\n  }\n\n.main h2 {\n  font-size: 25px;\n  margin: 0 0 10px;\n  font-weight: 400;\n}\n", ""]);
 
 // exports
 
@@ -36635,6 +36721,51 @@ if(false) {
 __webpack_require__(230);
 module.exports = __webpack_require__(229);
 
+
+/***/ }),
+/* 551 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(95)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".connect {\n  border: 1px solid #c1c1c1;\n  max-width: 642px;\n  padding: 3px 42px 40px 54px;\n  border-radius: 5px;\n  margin: 15px auto 50px;\n  overflow: hidden;\n}\n\n.return {\n  margin-top: 28px;\n  text-align: center;\n}\n\n  .return a {\n    text-decoration: none;\n    color: #929292;\n    font-size: 13px;\n  }\n\n  .return a:hover {\n    color: #333;\n  }\n\n.connect h1 {\n  text-align: center;\n  margin-bottom: 50px;\n}\n\n.connect p {\n  color: #929292;\n  font-size: 14px;\n  line-height: 18px;\n  margin: 0 0 13px;\n}\n\n/*.connect .disabled * {*/\n  /*color: #ddd;*/\n  /*cursor: default;*/\n/*}*/\n\n\n.connect .token {\n  width: 400px;\n}\n\n.connect select {\n  width: 400px;\n  height: 35px;\n}\n\n.connect input[type='date'] {\n  width: 195px;\n  height: 35px;\n  margin-right: 10px;\n}\n\n.connect .save {\n  float: right;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 552 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(551);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(105)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!./connect.css", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!./connect.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
 
 /***/ })
 /******/ ]);

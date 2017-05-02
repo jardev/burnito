@@ -2,6 +2,7 @@
     font-family: 'Lato', 'Arial', 'Helvetica', sans-serif;
     margin-bottom: 20px;
     color: #191d29;
+    overflow-x: hidden;
     font-size: 15px;
     line-height: 1.8;
     font-weight: 400;
@@ -53,20 +54,27 @@
   }
 
   input[type='submit'] {
-    font-weight: 800;
-    padding: 20px 25px;
+    font-weight: 600;
+    padding: 3px 12px 4px;
     border: 0;
-    margin: 67px 0 0;
     background: #61bd4f;
     background: linear-gradient(to bottom, #61bd4f 0, #5aac44 100%);
     box-shadow: 0 2px 0 #3f6f21;
     color: #fff;
     cursor: pointer;
+    font-size: 14px;
+    position: relative;
+    top: -2px;
   }
 
   h1 {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 900;
+  }
+
+  h2 {
+    font-size: 19px;
+    margin: 0;
   }
 
   input[type='submit']:hover {
@@ -82,12 +90,14 @@
 
   input[type='password'],
   input[type='email'],
-  input[type='text'] {
-    padding: 16px 17px;
+  input[type='date'],
+  input[type='text'],
+  select {
+    padding: 4px 9px;
     background: #edeff0;
     border: 1px solid #cdd2d4;
-    font-weight: 800;
-    font-size: 16px;
+    font-weight: 500;
+    font-size: 14px;
     color: #0a0505;
   }
 

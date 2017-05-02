@@ -1,0 +1,60 @@
+.connect {
+  border: 1px solid #c1c1c1;
+  max-width: 642px;
+  padding: 3px 42px 40px 54px;
+  border-radius: 5px;
+  margin: 15px auto 50px;
+  overflow: hidden;
+}
+
+.return {
+  margin-top: 28px;
+  text-align: center;
+}
+
+  .return a {
+    text-decoration: none;
+    color: #929292;
+    font-size: 13px;
+  }
+
+  .return a:hover {
+    color: #333;
+  }
+
+.connect h1 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.connect p {
+  color: #929292;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 0 0 13px;
+}
+
+/*.connect .disabled * {*/
+  /*color: #ddd;*/
+  /*cursor: default;*/
+/*}*/
+
+
+.connect .token {
+  width: 400px;
+}
+
+.connect select {
+  width: 400px;
+  height: 35px;
+}
+
+.connect input[type='date'] {
+  width: 195px;
+  height: 35px;
+  margin-right: 10px;
+}
+
+.connect .save {
+  float: right;
+}

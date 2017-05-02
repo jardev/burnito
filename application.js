@@ -1,20 +1,63 @@
 import React, { Component } from 'react'
-import { render } from 'react-dom'
 import ReactDOM from 'react-dom'
 import { Router, Route, hashHistory, IndexRoute } from 'react-router'
+
 import './build/styles/index.css'
 import './build/styles/footer.css'
 import './build/styles/header.css'
 import './build/styles/main.css'
+import './build/styles/connect.css'
 
 class Connect extends Component {
   render() {
     return (
-      <aside id='contact'>
-        <h2 className='title email'>
-          <a href='mailto:hi@aliename.com?subject=Hello'>HI@<i>ALIENAME</i>.COM</a>
-        </h2>
-      </aside>
+      <div>
+        <div className='return'>
+          <a href='/'>« Return</a>
+        </div>
+
+        <aside className='connect'>
+          <h1>Setup</h1>
+
+          <div>
+            <h2>1. Connect your Asana account</h2>
+            <p>Create a token in Asana and paste it here. You can get this token in Asana by going to My Profile Settings > Apps > Manage > Personal Access Tokens.</p>
+
+            <input className="token" type="text" placeholder="0/3de7b0cbdc27b5a2841f23d1cf8a45c9" />
+            &nbsp;&nbsp;
+            <input className="token-submit" type="submit" value="Save token" />
+            <br /><br />
+          </div>
+
+          <div className='disabled'>
+            <h2>2. Select a workspace </h2>
+            <p>Choose the workspace your want to display projects from.</p>
+
+            <select>&nbsp;</select>
+            <br /><br />
+          </div>
+
+          <div className='disabled'>
+            <h2>3. Select a project</h2>
+            <p>Select the project you want to display the chart for (only active projects).</p>
+
+            <select>&nbsp;</select>
+            <br /><br />
+          </div>
+
+          <div className='disabled'>
+            <h2>4. Enter Start and End date of the sprint </h2>
+            <p>(In safari plese enter in format 2017-03-01.</p>
+
+            <input type="date" className="startdate" />
+            <input type="date" className="enddate" />
+            <br /><br /><br />
+          </div>
+
+          <input className="save" type="submit" value="Save and load graph" />
+
+        </aside>
+      </div>
     )
   }
 }
@@ -70,8 +113,8 @@ ReactDOM.render(
   <Router history={hashHistory}>
     <Route path='/' component={envelope} >
       <IndexRoute component={Main} />
-      <Route path='/connect' component={Connect} />
     </Route>
+    <Route path='/connect' component={Connect} />
   </Router>,
   document.getElementById('root')
 )
