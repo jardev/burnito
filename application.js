@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Router, Route, hashHistory, IndexRoute } from 'react-router'
+import utils from './application-utils'
 
 import './build/styles/index.css'
 import './build/styles/footer.css'
@@ -9,6 +10,12 @@ import './build/styles/main.css'
 import './build/styles/connect.css'
 
 class Connect extends Component {
+  constructor() {
+    super(...arguments)
+
+    utils.nah()
+  }
+
   render() {
     return (
       <div>
@@ -23,9 +30,9 @@ class Connect extends Component {
             <h2>1. Connect your Asana account</h2>
             <p>Create a token in Asana and paste it here. You can get this token in Asana by going to My Profile Settings > Apps > Manage > Personal Access Tokens.</p>
 
-            <input className="token" type="text" placeholder="0/3de7b0cbdc27b5a2841f23d1cf8a45c9" />
+            <input className='token' type='text' placeholder='0/3de7b0cbdc27b5a2841f23d1cf8a45c9' />
             &nbsp;&nbsp;
-            <input className="token-submit" type="submit" value="Save token" />
+            <input className='token-submit' type='submit' value='Save token' />
             <br /><br />
           </div>
 
@@ -49,13 +56,13 @@ class Connect extends Component {
             <h2>4. Enter Start and End date of the sprint </h2>
             <p>(In safari plese enter in format 2017-03-01.</p>
 
-            <input type="date" className="startdate" />
-            <input type="date" className="enddate" />
+            <input type='date' className='startdate' />
+            <input type='date' className='enddate' />
             <br /><br /><br />
           </div>
 
-          <input className="save" type="submit" value="Save and load graph" />
-
+          <input className='save' type='submit' value='Save and load graph' /><br />
+          <a href='/#/graph'>Graph</a>
         </aside>
       </div>
     )
@@ -69,6 +76,16 @@ class Footer extends Component {
         &copy; Burnito 2017
         <a target='_blank' href='https://github.com/ondrek/burnito'>Github</a>
       </div></footer>
+    )
+  }
+}
+
+class Graph extends Component {
+  render() {
+    return (
+      <header className='graph'><div className='wrapper'>
+        graph
+      </div></header>
     )
   }
 }
@@ -113,6 +130,7 @@ ReactDOM.render(
   <Router history={hashHistory}>
     <Route path='/' component={envelope} >
       <IndexRoute component={Main} />
+      <Route path='/graph' component={Graph} />
     </Route>
     <Route path='/connect' component={Connect} />
   </Router>,

@@ -16199,6 +16199,10 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _reactRouter = __webpack_require__(525);
 
+var _applicationUtils = __webpack_require__(554);
+
+var _applicationUtils2 = _interopRequireDefault(_applicationUtils);
+
 __webpack_require__(548);
 
 __webpack_require__(546);
@@ -16223,7 +16227,10 @@ var Connect = function (_Component) {
   function Connect() {
     _classCallCheck(this, Connect);
 
-    return _possibleConstructorReturn(this, (Connect.__proto__ || Object.getPrototypeOf(Connect)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Connect.__proto__ || Object.getPrototypeOf(Connect)).apply(this, arguments));
+
+    _applicationUtils2.default.nah();
+    return _this;
   }
 
   _createClass(Connect, [{
@@ -16329,7 +16336,13 @@ var Connect = function (_Component) {
             _react2.default.createElement('br', null),
             _react2.default.createElement('br', null)
           ),
-          _react2.default.createElement('input', { className: 'save', type: 'submit', value: 'Save and load graph' })
+          _react2.default.createElement('input', { className: 'save', type: 'submit', value: 'Save and load graph' }),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'a',
+            { href: '/#/graph' },
+            'Graph'
+          )
         )
       );
     }
@@ -16370,8 +16383,35 @@ var Footer = function (_Component2) {
   return Footer;
 }(_react.Component);
 
-var Header = function (_Component3) {
-  _inherits(Header, _Component3);
+var Graph = function (_Component3) {
+  _inherits(Graph, _Component3);
+
+  function Graph() {
+    _classCallCheck(this, Graph);
+
+    return _possibleConstructorReturn(this, (Graph.__proto__ || Object.getPrototypeOf(Graph)).apply(this, arguments));
+  }
+
+  _createClass(Graph, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'header',
+        { className: 'graph' },
+        _react2.default.createElement(
+          'div',
+          { className: 'wrapper' },
+          'graph'
+        )
+      );
+    }
+  }]);
+
+  return Graph;
+}(_react.Component);
+
+var Header = function (_Component4) {
+  _inherits(Header, _Component4);
 
   function Header() {
     _classCallCheck(this, Header);
@@ -16405,22 +16445,22 @@ var Header = function (_Component3) {
   return Header;
 }(_react.Component);
 
-var Main = function (_Component4) {
-  _inherits(Main, _Component4);
+var Main = function (_Component5) {
+  _inherits(Main, _Component5);
 
   function Main() {
     _classCallCheck(this, Main);
 
-    var _this4 = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).apply(this, arguments));
+    var _this5 = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).apply(this, arguments));
 
-    _this4.state = { domains: [], texts: {}, refs: [] };
+    _this5.state = { domains: [], texts: {}, refs: [] };
 
     var url = '//raw.githubusercontent.com/ondrek/aliename/master/.admin.json?' + +new Date();
     $.getJSON(url, function (adminJson) {
       this.setState({ domains: adminJson.domains, texts: adminJson.texts, refs: adminJson.refs
       });
-    }.bind(_this4));
-    return _this4;
+    }.bind(_this5));
+    return _this5;
   }
 
   _createClass(Main, [{
@@ -16463,7 +16503,8 @@ _reactDom2.default.render(_react2.default.createElement(
   _react2.default.createElement(
     _reactRouter.Route,
     { path: '/', component: envelope },
-    _react2.default.createElement(_reactRouter.IndexRoute, { component: Main })
+    _react2.default.createElement(_reactRouter.IndexRoute, { component: Main }),
+    _react2.default.createElement(_reactRouter.Route, { path: '/graph', component: Graph })
   ),
   _react2.default.createElement(_reactRouter.Route, { path: '/connect', component: Connect })
 ), document.getElementById('root'));
@@ -36766,6 +36807,25 @@ if(false) {
 	// When the module is disposed, remove the <style> tags
 	module.hot.dispose(function() { update(); });
 }
+
+/***/ }),
+/* 553 */,
+/* 554 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var fns = {};
+
+fns.nah = function () {
+  console.info('nah');
+};
+
+exports.default = fns;
 
 /***/ })
 /******/ ]);
